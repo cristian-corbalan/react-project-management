@@ -1,15 +1,21 @@
 import Input from './Input.jsx';
 
 
-export default function NewProject() {
+export default function NewProject({onHideForm}) {
   return (
     <section className="w-2/5 pt-16">
       <menu className="flex items-center justify-end gap-4 my-4">
         <li>
-          <button className="text-stone-800 hover:text-stone-950">Cancel</button>
+          <button className="text-stone-800 hover:text-stone-950"
+                  onClick={onHideForm}
+          >Cancel
+          </button>
         </li>
         <li>
-          <button className="py-2 px-6 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950">Save</button>
+          <button className="py-2 px-6 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950"
+                  onClick={onHideForm}
+          >Save
+          </button>
         </li>
       </menu>
 

@@ -26,10 +26,10 @@ function App() {
       setProjects(updatedProjects);
     })
   }
-  
+
   return (
     <main className="h-screen pt-8 flex gap-8">
-      <ProjectsSideBar onShowForm={handleShowForm} />
+      <ProjectsSideBar onShowForm={handleShowForm} projects={projects} />
 
       {!showCreateForm && <NoProjectSelected onShowForm={handleShowForm} />}
       {showCreateForm && <NewProject onCreateProject={handleCreateProject} onHideForm={handleHideForm} />}

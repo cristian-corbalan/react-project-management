@@ -3,15 +3,13 @@ import Input from './Input.jsx';
 
 export default function NewProject() {
   return (
-    <section>
-      <h2>Create a new project</h2>
-
-      <menu>
+    <section className="w-2/5 pt-16">
+      <menu className="flex items-center justify-end gap-4 my-4">
         <li>
-          <button>Cancel</button>
+          <button className="text-stone-800 hover:text-stone-950">Cancel</button>
         </li>
         <li>
-          <button>Save</button>
+          <button className="py-2 px-6 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950">Save</button>
         </li>
       </menu>
 

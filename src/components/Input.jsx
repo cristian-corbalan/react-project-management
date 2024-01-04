@@ -1,4 +1,6 @@
-export default function Input({id, label, textarea, labelHidden = false, ...props}) {
+import {forwardRef} from 'react';
+
+export default forwardRef(function Input({id, label, textarea, labelHidden = false, ...props}, ref) {
 
   let labelClass = 'text-sm font-bold uppercase text-stone-500';
   if (labelHidden) {
@@ -17,10 +19,9 @@ export default function Input({id, label, textarea, labelHidden = false, ...prop
 
       {
         textarea
-          ? <textarea className={inputClass} id={id} {...props}></textarea>
-          : <input className={inputClass} id={id} {...props} />
+          ? <textarea ref={ref} className={inputClass} id={id} {...props}></textarea>
+          : <input ref={ref} className={inputClass} id={id} {...props} />
       }
     </div>
   )
-
-}
+})

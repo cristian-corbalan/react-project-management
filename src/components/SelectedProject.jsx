@@ -1,13 +1,24 @@
+import {useRef} from 'react';
 import Input from './Input.jsx';
 
 
-export default function SelectedProject({project}) {
+export default function SelectedProject({project, onSaveTask}) {
+  const input = useRef();
 
   const formattedDate = new Date(project.dueDate).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',
     day: 'numeric'
-  })
+  });
+
+  function handleAddTask () {
+    const newTask = {
+      content: input.current.value,
+      id: Math.random(),
+    }
+
+    onSaveTask(project.id, newTask);
+  }
 
   return (
     <section className="w-2/3 pt-16">
@@ -19,6 +30,19 @@ export default function SelectedProject({project}) {
         <p className="mb-4 text-stone-400">{project.dueDate}</p>
         <p className="text-stone-600 whitespace-pre-wrap">{project.description}</p>
       </header>
+
+      <h3>Tasks</h3>
+      <div className="flex gap-4">
+        <Input ref={input} label="New task" id="newTask" labelHidden type="text" name="new_task" />
+        <button onClick={handleAddTask}>Add Task</button>
+      </div>
+      <ul>
+        {project.tasks.map((task) => (
+          <li key={task.id}>
+            <span>{task.content}</span>
+          </li>
+        ))}
+      </ul>
     </section>
   )
 }

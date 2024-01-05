@@ -27,7 +27,7 @@ export default function SelectedProject({project, onSaveTask}) {
           <h2 className="text-3xl font-bold text-stone-600 mb-2">{project.title}</h2>
           <button className="text-stone-600 hover:text-stone-950">Delete</button>
         </div>
-        <p className="mb-4 text-stone-400">{project.dueDate}</p>
+        <p className="mb-4 text-stone-400">{formattedDate}</p>
         <p className="text-stone-600 whitespace-pre-wrap">{project.description}</p>
       </header>
 

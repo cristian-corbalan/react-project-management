@@ -16,8 +16,6 @@ export default function NewProject({onHideForm, onCreateProject}) {
     const enteredDescription = description.current.value;
     const enteredUdDate = udDate.current.value;
 
-    // TODO: Validate.
-
     if (txtValid(enteredTitle) || txtValid(enteredDescription) || txtValid(enteredUdDate)) {
       dialog.current.open();
       return;
@@ -27,7 +25,7 @@ export default function NewProject({onHideForm, onCreateProject}) {
       title: enteredTitle,
       description: enteredDescription,
       ulDate: enteredUdDate,
-      task: []
+      tasks: []
     });
     onHideForm();
   }
@@ -44,13 +42,15 @@ export default function NewProject({onHideForm, onCreateProject}) {
           <li>
             <button className="text-stone-800 hover:text-stone-950"
                     onClick={onHideForm}
-            >Cancel
+            >
+              Cancel
             </button>
           </li>
           <li>
             <button className="py-2 px-6 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950"
                     onClick={handleSave}
-            >Save
+            >
+              Save
             </button>
           </li>
         </menu>
@@ -59,8 +59,6 @@ export default function NewProject({onHideForm, onCreateProject}) {
           <Input ref={title} label="Title" id="title" type="text" name="title" />
           <Input ref={description} label="Description" id="description" name="description" textarea />
           <Input ref={udDate} label="Due date" id="date" type="date" name="date" />
-
-
         </div>
       </section>
     </>

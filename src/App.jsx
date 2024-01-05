@@ -18,6 +18,8 @@ function App() {
 
   function handleCreateProject(newProject) {
     setProjects(oldProjects => {
+      newProject.id = Math.random();
+
       const updatedProjects = [
         ...oldProjects.map((project) => ({...project})),
         newProject
@@ -26,6 +28,8 @@ function App() {
       setProjects(updatedProjects);
     })
   }
+
+  console.info(projects);
 
   return (
     <main className="h-screen pt-8 flex gap-8">

@@ -58,7 +58,7 @@ export default function NewProject({onHideForm, onCreateProject}) {
         <div> {/*A form is better than a div, but I need */}
           <Input ref={title} label="Title" id="title" type="text" name="title" />
           <Input ref={description} label="Description" id="description" name="description" textarea />
-          <Input ref={udDate} label="Due date" id="date" type="date" name="date" />
+          <Input ref={dueDate} label="Due date" id="date" type="date" name="date" />
         </div>
       </section>
     </>

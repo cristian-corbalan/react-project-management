@@ -4,7 +4,7 @@ import Input from './Input.jsx';
 import TaskList from './TaskList.jsx';
 
 
-export default function SelectedProject({project, onSaveTask, onDeleteProject}) {
+export default function SelectedProject({project, onSaveTask, onDeleteProject, onDeleteTask}) {
   const input = useRef();
   const dialog = useRef();
 
@@ -34,6 +34,10 @@ export default function SelectedProject({project, onSaveTask, onDeleteProject}) 
     input.current.value = '';
   }
 
+  function handleDeleteTask(taskId){
+    onDeleteTask(project.id, taskId);
+  }
+
   return (
     <>
       <Alert ref={dialog}>
@@ -58,7 +62,7 @@ export default function SelectedProject({project, onSaveTask, onDeleteProject}) 
           <Input ref={input} label="New task" id="newTask" labelHidden type="text" name="new_task" />
           <button className="text-stone-600 hover:text-stone-950" onClick={handleAddTask}>Add Task</button>
         </div>
-        <TaskList tasks={project.tasks} />
+        <TaskList tasks={project.tasks} onDeleteTask={handleDeleteTask} />
       </section>
     </>
   )

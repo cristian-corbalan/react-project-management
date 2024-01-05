@@ -14,14 +14,40 @@ function App() {
         title: 'Project 01',
         description: 'This is a good description',
         dueDate: '2023-01-05',
-        tasks: []
+        tasks: [
+          {
+            content: 'Task 01',
+            id: 1
+          },
+          {
+            content: 'Task 02',
+            id: 2
+          },
+          {
+            content: 'Task 03',
+            id: 3
+          },
+        ]
       },
       {
         id: 2,
         title: 'Project 02',
         description: 'This is another good description',
         dueDate: '2023-02-05',
-        tasks: []
+        tasks: [
+          {
+            content: 'Task 01',
+            id: 1
+          },
+          {
+            content: 'Task 02',
+            id: 2
+          },
+          {
+            content: 'Task 03',
+            id: 3
+          },
+        ]
       },
       {
         id: 3,
@@ -98,6 +124,20 @@ function App() {
     })
   }
 
+  function onDeleteTask(projectId, taskId){
+    setProjectState(prevState => {
+      const projects = structuredClone(prevState.projects);
+      const projectIndex = projects.findIndex(project => project.id === projectId);
+      const TaskIndex = projects[projectIndex].tasks.findIndex(task => task.id === taskId);
+      projects[projectIndex].tasks.splice(TaskIndex, 1);
+
+      return {
+        ...prevState,
+        projects: projects
+      }
+    })
+  }
+
   let currentSection;
 
   if (projectState.selectedProjectId === null) {
@@ -105,7 +145,11 @@ function App() {
   } else if (projectState.selectedProjectId === undefined) {
     currentSection = <NoProjectSelected onShowForm={handleShowForm} />
   } else {
-    currentSection = <SelectedProject project={selectedProject} onSaveTask={onSaveTask} onDeleteProject={onDeleteProject}/>
+    currentSection = <SelectedProject project={selectedProject}
+                                      onSaveTask={onSaveTask}
+                                      onDeleteProject={onDeleteProject}
+                                      onDeleteTask={onDeleteTask}
+    />
   }
 
   return (

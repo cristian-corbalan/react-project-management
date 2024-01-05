@@ -14,22 +14,22 @@ function App() {
         title: 'Project 01',
         description: 'This is a good description',
         dueDate: '2023-01-05',
-        tasks: [],
+        tasks: []
       },
       {
         id: 2,
         title: 'Project 02',
         description: 'This is another good description',
         dueDate: '2023-02-05',
-        tasks: [],
+        tasks: []
       },
       {
         id: 3,
         title: 'Project 03',
         description: 'This is a good description more',
         dueDate: '2023-03-05',
-        tasks: [],
-      },
+        tasks: []
+      }
     ]
   })
 
@@ -85,6 +85,19 @@ function App() {
     })
   }
 
+  function onDeleteProject(id) {
+    setProjectState(prevState => {
+      const projects = structuredClone(prevState.projects);
+      const projectIndex = projects.findIndex(project => project.id === id);
+      projects.splice(projectIndex, 1);
+
+      return {
+        selectedProjectId: undefined,
+        projects: projects
+      }
+    })
+  }
+
   let currentSection;
 
   if (projectState.selectedProjectId === null) {
@@ -92,7 +105,7 @@ function App() {
   } else if (projectState.selectedProjectId === undefined) {
     currentSection = <NoProjectSelected onShowForm={handleShowForm} />
   } else {
-    currentSection = <SelectedProject project={selectedProject} onSaveTask={onSaveTask} />
+    currentSection = <SelectedProject project={selectedProject} onSaveTask={onSaveTask} onDeleteProject={onDeleteProject}/>
   }
 
   return (

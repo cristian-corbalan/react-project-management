@@ -8,13 +8,13 @@ const txtValid = (txt) => txt.trim().length === 0;
 export default function NewProject({onHideForm, onCreateProject}) {
   const title = useRef();
   const description = useRef();
-  const udDate = useRef();
+  const dueDate = useRef();
   const dialog = useRef();
 
   function handleSave() {
     const enteredTitle = title.current.value;
     const enteredDescription = description.current.value;
-    const enteredUdDate = udDate.current.value;
+    const enteredUdDate = dueDate.current.value;
 
     if (txtValid(enteredTitle) || txtValid(enteredDescription) || txtValid(enteredUdDate)) {
       dialog.current.open();
@@ -24,7 +24,7 @@ export default function NewProject({onHideForm, onCreateProject}) {
     onCreateProject({
       title: enteredTitle,
       description: enteredDescription,
-      ulDate: enteredUdDate,
+      dueDate: enteredUdDate,
       tasks: []
     });
     onHideForm();
